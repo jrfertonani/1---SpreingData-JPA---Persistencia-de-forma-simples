@@ -1,6 +1,8 @@
 package Java;
 
 import Java.dao.InterfaceSpringDataUser;
+import Java.dao.InterfaceTelefone;
+import Java.model.Telefone;
 import Java.model.UsuarioSpringData;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class AppSpringDataTest {
     @Autowired
     private InterfaceSpringDataUser interfaceSpringDataUser;
 
+    @Autowired
+    private InterfaceTelefone interfaceTelefone;
+
     @Test
     @Commit
     public void testInsert(){
@@ -25,7 +30,7 @@ public class AppSpringDataTest {
         usuarioSpringData.setIdade(18);
         usuarioSpringData.setLogin("123");
         usuarioSpringData.setSenha("123");
-        usuarioSpringData.setNome("Ademir");
+        usuarioSpringData.setNome("Ademir telefone");
 
         interfaceSpringDataUser.save(usuarioSpringData);
 
@@ -35,7 +40,7 @@ public class AppSpringDataTest {
 
     @Test
     @Commit
-    public void testInsert2(){
+    public void testConsulta(){
 
         Optional<UsuarioSpringData> usuarioSpringData = interfaceSpringDataUser.findById(2L);
 
@@ -45,6 +50,12 @@ public class AppSpringDataTest {
         System.out.println(usuarioSpringData.get().getEmail());
         System.out.println(usuarioSpringData.get().getLogin());
         System.out.println(usuarioSpringData.get().getSenha());
+
+        for(Telefone telefone : usuarioSpringData.get().getTelefone()){
+            System.out.println(telefone.getNumero());
+            System.out.println(telefone.getTelefone());
+        }
+
     }
 
     @Test
@@ -123,6 +134,22 @@ public class AppSpringDataTest {
     public void testeUpdateEmailPorNome(){
         interfaceSpringDataUser.updateEmailPorNome("jave@email.com", "Ademir");
     }
+
+    @Test
+    @Commit
+    public void testeTelefone(){
+
+        Optional<UsuarioSpringData> usuarioSpringData = interfaceSpringDataUser.findById(4L);
+
+        Telefone telefone = new Telefone();
+        telefone.setTelefone("Celular");
+        telefone.setNumero("999999999");
+        telefone.setUsuarioSpringData(usuarioSpringData.get());
+
+       // interfaceTelefone.save(telefone);
+
+    }
+
 
 
 

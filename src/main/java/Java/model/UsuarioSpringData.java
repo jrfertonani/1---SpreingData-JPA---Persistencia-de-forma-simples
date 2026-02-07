@@ -1,10 +1,9 @@
 package Java.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class UsuarioSpringData {
@@ -19,6 +18,10 @@ public class UsuarioSpringData {
     private String login;
     private String nome;
     private String senha;
+
+
+    @OneToMany(mappedBy = "usuarioSpringData", orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Telefone> telefone;
 
 
     public Long getId() {
@@ -67,5 +70,13 @@ public class UsuarioSpringData {
 
     public void setIdade(Integer idade) {
         this.idade = idade;
+    }
+
+    public List<Telefone> getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(List<Telefone> telefone) {
+        this.telefone = telefone;
     }
 }
