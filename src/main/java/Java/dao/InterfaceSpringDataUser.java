@@ -3,7 +3,9 @@ package Java.dao;
 import Java.model.UsuarioSpringData;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -11,7 +13,10 @@ import java.util.List;
 public interface InterfaceSpringDataUser extends CrudRepository<UsuarioSpringData, Long> {
 
 
-    @Query(value = "select p from UsuarioSoringData p where p.nome like %?1%")
+    @Query(value = "select p from UsuarioSpringData p where p.nome like %?1%")
     public List<UsuarioSpringData> buscaPorNome(String nome);
+
+    @Query(value = "select p from UsuarioSpringData p where p.nome = :paramnome")
+    public UsuarioSpringData buscaPorNomeParam(@Param("paramnome") String paramnome);
 
 }

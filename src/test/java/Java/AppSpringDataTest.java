@@ -85,7 +85,7 @@ public class AppSpringDataTest {
      interfaceSpringDataUser.delete(usuarioSpringData.get());
     }
 
- @Test
+    @Test
     @Commit
     public void testeConsultaNome(){
 
@@ -102,6 +102,15 @@ public class AppSpringDataTest {
 
     }
 
+    @Test
+    @Commit
+    public void testeConsultaNomeParam(){
+
+        UsuarioSpringData list = (UsuarioSpringData) interfaceSpringDataUser.buscaPorNome("Ademir");
+
+            System.out.println(list.getNome());
+
+    }
 
 
 
