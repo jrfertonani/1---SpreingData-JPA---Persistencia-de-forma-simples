@@ -112,6 +112,17 @@ public class AppSpringDataTest {
 
     }
 
+    @Test
+    @Commit
+    public void testeDeletePorNome(){
+        interfaceSpringDataUser.deletePorNome("SpringData");
+    }
+
+    @Test
+    @Commit
+    public void testeUpdateEmailPorNome(){
+        interfaceSpringDataUser.updateEmailPorNome("jave@email.com", "Ademir");
+    }
 
 
 
