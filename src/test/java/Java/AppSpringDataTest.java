@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -72,6 +73,33 @@ public class AppSpringDataTest {
         data.setNome("SpreingData");
 
         interfaceSpringDataUser.save(data);
+    }
+
+
+    @Test
+    @Commit
+    public void testeDelete(){
+
+        Optional<UsuarioSpringData> usuarioSpringData = interfaceSpringDataUser.findById(2L);
+
+     interfaceSpringDataUser.delete(usuarioSpringData.get());
+    }
+
+ @Test
+    @Commit
+    public void testeConsultaNome(){
+
+     List<UsuarioSpringData> list = interfaceSpringDataUser.buscaPorNome("Ademir");
+
+     for(UsuarioSpringData usuarioSpringData : list){
+         System.out.println(usuarioSpringData.getId());
+         System.out.println(usuarioSpringData.getNome());
+         System.out.println(usuarioSpringData.getIdade());
+         System.out.println(usuarioSpringData.getEmail());
+         System.out.println(usuarioSpringData.getLogin());
+         System.out.println(usuarioSpringData.getSenha());
+     }
+
     }
 
 
